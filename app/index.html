@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sunset Panels — GTA-Style Cover Art Maker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="topbar">
+  <div class="brand">
+    <span class="brand-mark">SP</span>
+    <div>
+      <h1>Sunset Panels</h1>
+      <p>Turn your own photos into bold multi-panel cover art. Everything stays on your machine.</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <label class="size-label" for="sizePicker">Export size</label>
+    <select id="sizePicker">
+      <option value="1080x1080" selected>Square · 1080 × 1080</option>
+      <option value="1080x1350">Portrait · 1080 × 1350</option>
+      <option value="1920x1080">Wide · 1920 × 1080</option>
+    </select>
+    <button id="exportButton" type="button">Export PNG</button>
+  </div>
+</header>
+
+<main id="layout">
+  <section id="stageWrap">
+    <div id="stage" data-aspect="1080x1080">
+      <div id="panels"></div>
+      <div id="gradeOverlay"></div>
+      <div id="captionOverlay">
+        <div id="captionKicker">SUNSET PANELS PRESENTS</div>
+        <div id="captionText">Sunset Heist</div>
+        <div id="captionRule"></div>
+      </div>
+      <div id="emptyHint">Load a photo to begin — it appears across every panel.</div>
+    </div>
+    <p id="stageTip">Drag a panel to reposition its photo. Scroll over a panel to zoom it. Click a panel to select it.</p>
+  </section>
+
+  <aside id="controls">
+    <section class="control-block">
+      <h2>1 · Photos</h2>
+      <div class="button-row">
+        <button id="loadAllButton" type="button">Load photo for all panels</button>
+        <button id="loadSelectedButton" type="button">Load photo for selected panel</button>
+      </div>
+      <input id="fileInput" type="file" accept="image/*" multiple hidden>
+      <div class="mode-row" role="radiogroup" aria-label="Fill mode">
+        <label><input type="radio" name="fillMode" value="single" checked> One photo across panels</label>
+        <label><input type="radio" name="fillMode" value="multi"> Different photo per panel</label>
+      </div>
+      <div id="panelPicker" aria-label="Choose a panel"></div>
+      <p class="hint">In “different photo” mode, loading several photos at once fills panels in order.</p>
+    </section>
+
+    <section class="control-block">
+      <h2>2 · Position &amp; zoom</h2>
+      <label class="slider-label" for="zoomSlider">Zoom <span id="zoomValue">1.00×</span></label>
+      <input id="zoomSlider" type="range" min="1" max="3" step="0.01" value="1">
+      <label class="slider-label" for="xSlider">Move left / right <span id="xValue">0</span></label>
+      <input id="xSlider" type="range" min="-220" max="220" step="1" value="0">
+      <label class="slider-label" for="ySlider">Move up / down <span id="yValue">0</span></label>
+      <input id="ySlider" type="range" min="-220" max="220" step="1" value="0">
+      <button id="resetPanelButton" type="button" class="ghost">Reset selected panel</button>
+    </section>
+
+    <section class="control-block">
+      <h2>3 · Caption &amp; colour</h2>
+      <label class="slider-label" for="captionInput">Caption</label>
+      <input id="captionInput" type="text" maxlength="34" value="Sunset Heist">
+      <label class="slider-label" for="gradeSlider">Vice sunset / neon grade <span id="gradeValue">55%</span></label>
+      <input id="gradeSlider" type="range" min="0" max="100" step="1" value="55">
+      <label class="slider-label" for="captionSizeSlider">Caption size <span id="captionSizeValue">100%</span></label>
+      <input id="captionSizeSlider" type="range" min="60" max="150" step="1" value="100">
+    </section>
+
+    <section class="control-block">
+      <h2>4 · Export</h2>
+      <p class="hint">Exports a real PNG at the size picked above, with the same panels, grade and caption you see in the preview.</p>
+      <button id="exportButtonSide" type="button">Download cover PNG</button>
+    </section>
+  </aside>
+</main>
+
+<footer id="footerNote">Original artwork only — no game logos, wordmarks or fonts. Made with your photos, locally, offline.</footer>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
